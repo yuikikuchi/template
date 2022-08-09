@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  nginx:
+    container_name: container_nginx
+    build:
+      context: ./nginx
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./nginx/log:/var/log/nginx
+    ports:
+      - 80:80
+
+  tomcat:
+    container_name: container_tomcat
+    build:
+      context: ./tomcat
+    volumes:
+      - ./tomcat/webapps:/usr/local/tomcat/webapps
+      - ./tomcat/log:/usr/local/tomcat/logs
+    ports:
+      - 8080:8080
